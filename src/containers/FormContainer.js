@@ -1,25 +1,59 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Form from "../components/Form";
+import "../style/Form.css";
 import { saveLocation } from "../actions/locationActions";
+import { withFormik } from "formik";
+
+const FormikForm = withFormik({
+  mapPropsToValues: (props) => {
+    var p = props;
+    return {
+      name: "",
+      lat: "",
+      lon: "",
+    };
+  },
+  validate(v) {
+    const errors = {};
+
+    if (!v.name) {
+      errors.name = "Required";
+    }
+    if (v.lat > 90 || v.lat < -90) {
+      errors.lat = "Value must be between -90 and 90.";
+    }
+    if (v.lon > 180 || v.lon < -180) {
+      errors.lon = "Value must be between -180 and 180.";
+    }
+    return errors;
+  },
+  handleSubmit(values, { props, setSubmitting }) {
+    const { saveLocation } = props;
+    let d = {
+      name: values.name,
+      lat: values.lat,
+      lng: values.lon,
+    };
+    saveLocation(d).then(() => setSubmitting(false));
+  },
+})(Form);
 
 const mapStateToProps = (state) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ saveLocation }, dispatch);
   return {
-    saveLocation: (location) => {
-      dispatch({
-        type: "SAVE_LOCATION",
-        data: location,
-      });
+    values: {
+      name: "",
+      lat: 0,
+      lon: 0,
     },
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ saveLocation }, dispatch);
+};
+
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
-)(Form);
+)(FormikForm);
