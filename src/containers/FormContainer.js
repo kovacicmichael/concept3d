@@ -18,14 +18,15 @@ const FormikForm = withFormik({
     const errors = {};
 
     if (!v.name) {
-      errors.name = "Required";
+      errors.name = "Name is required.";
     }
-    if (v.lat > 90 || v.lat < -90) {
-      errors.lat = "Value must be between -90 and 90.";
+    if (!v.lat || v.lat > 90 || v.lat < -90) {
+      errors.lat = "Enter a value between -90 and 90.";
     }
-    if (v.lon > 180 || v.lon < -180) {
-      errors.lon = "Value must be between -180 and 180.";
+    if (!v.lon || v.lon > 180 || v.lon < -180) {
+      errors.lon = "Enter a value between -180 and 180.";
     }
+
     return errors;
   },
   handleSubmit(values, { props, setSubmitting }) {

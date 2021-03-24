@@ -33,8 +33,9 @@ class FormikForm extends Component {
             />
             <ErrorMessage
               component="div"
-              name="email"
+              name="name"
               className="invalid-feedback"
+              render={(msg) => <div className="invalid-feedback">{msg}</div>}
             />
           </div>
           <div className="form-group">
@@ -50,6 +51,7 @@ class FormikForm extends Component {
               component="div"
               name="lat"
               className="invalid-feedback"
+              render={(msg) => <div className="invalid-feedback">{msg}</div>}
             />
           </div>
           <div className="form-group">
@@ -65,10 +67,12 @@ class FormikForm extends Component {
               component="div"
               name="lon"
               className="invalid-feedback"
+              render={(msg) => <div className="invalid-feedback">{msg}</div>}
             />
           </div>
           <button
             type="submit"
+            className="form-button"
             disabled={isSubmitting || Object.keys(errors).length > 0}
           >
             Submit
@@ -78,43 +82,5 @@ class FormikForm extends Component {
     );
   }
 }
-
-// const { handleSubmit } = this.props;
-
-//     return (
-//       <form className="form" onSubmit={handleSubmit}>
-//         <label>
-//           Name
-//           <input
-//             ref={(input) => {
-//               this.name = input;
-//             }}
-//             type="text"
-//             name="name"
-//           />
-//         </label>
-//         <label>
-//           Lat
-//           <input
-//             ref={(input) => {
-//               this.lat = input;
-//             }}
-//             type="text"
-//             name="lat"
-//           />
-//         </label>
-//         <label>
-//           Lon
-//           <input
-//             ref={(input) => {
-//               this.lng = input;
-//             }}
-//             type="text"
-//             name="lon"
-//           />
-//         </label>
-//         <button type="submit">Save</button>
-//       </form>
-//     );
 
 export default FormikForm;
