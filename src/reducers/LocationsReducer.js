@@ -4,7 +4,11 @@ const initialState = {
 
 const Locations = (state = initialState, action) => {
   switch (action.type) {
-    case 'STORE_LOCATIONS':
+    case "STORE_LOCATIONS":
+      return Object.assign({}, state, {
+        data: state.data.concat(action.data),
+      });
+    case "ADD_NEW_LOCATION":
       return Object.assign({}, state, {
         data: state.data.concat(action.data),
       });
