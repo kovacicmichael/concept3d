@@ -9,6 +9,7 @@ class App extends Component {
   }
   getLocations() {
     this.props.fetchAllLocations();
+    this.props.fetchAllPolygons();
   }
   render() {
     return (

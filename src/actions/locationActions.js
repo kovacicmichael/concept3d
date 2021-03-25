@@ -15,6 +15,13 @@ const addNewLocation = (location) => {
   };
 };
 
+const storeAllPolygons = (polygon) => {
+  return {
+    type: "STORE_LOCATIONS",
+    data: polygon,
+  };
+};
+
 // Service Requests
 const fetchAllLocations = () => {
   return (dispatch) => {
@@ -45,4 +52,19 @@ const saveLocation = (location) => {
   };
 };
 
-export { fetchAllLocations, saveLocation };
+const fetchAllPolygons = () => {
+  return async (dispatch) => {
+    let r = await fetch("/polygons", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    if (!r.ok) throw new Error(r.status + ": " + r.statusText);
+    let res = await r.json();
+    dispatch(addNewLocation(res));
+  };
+};
+
+export { fetchAllLocations, saveLocation, fetchAllPolygons };

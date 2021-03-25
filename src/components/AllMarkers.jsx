@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import MapMarker from './Marker';
+import React, { PureComponent } from "react";
+import MapMarker from "../containers/Marker";
 
 class AllMarkers extends PureComponent {
   render() {
@@ -8,6 +8,7 @@ class AllMarkers extends PureComponent {
       return (
         <MapMarker
           key={i}
+          marker={marker}
           location={[+marker.lat, +marker.lng]}
           name={marker.name}
         />
