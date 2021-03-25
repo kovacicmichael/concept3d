@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 class FormikForm extends Component {
-  submitForm(e, data) {
-    e.preventDefault();
-    this.props.saveLocation(data);
-  }
-
   render() {
     const {
       errors,

@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <FormContainer />
-        <LeafletMap locations={this.props.locations} />
+        <LeafletMap locations={this.props.locations} map={this.props.map} />
       </div>
     );
   }
