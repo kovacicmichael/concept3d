@@ -1,0 +1,44 @@
+.error-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  background-color: rgb(0, 0, 0, 0.6);
+}
+
+.error-info-container {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, -50%);
+  right: 50%;
+  min-height: 150px;
+  min-width: 325px;
+  display: flex;
+}
+
+.error-info {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.error-message {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.error-button {
+  width: 60px;
+  height: 30px;
+  border: 1px solid grey;
+  color: grey;
+}
+
+.error-button:hover {
+  background-color: #ccc;
+  color: black;
+  cursor: pointer;
+}

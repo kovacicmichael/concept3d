@@ -1,56 +1,81 @@
 import React, { Component } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
-class Form extends Component {
-  submitForm(e, data) {
-    e.preventDefault();
-    this.props.saveLocation(data);
-  }
-
+class FormikForm extends Component {
   render() {
+    const {
+      errors,
+      touched,
+      handleSubmit,
+      isSubmitting,
+      values,
+      setFieldValue,
+      setFieldTouched,
+    } = this.props;
+
     return (
-      <form className="form">
-        <label>
-          Name
-          <input
-            ref={(input) => {
-              this.name = input;
-            }}
-            type="text"
-          />
-        </label>
-        <label>
-          Lat
-          <input
-            ref={(input) => {
-              this.lat = input;
-            }}
-            type="text"
-          />
-        </label>
-        <label>
-          Lon
-          <input
-            ref={(input) => {
-              this.lng = input;
-            }}
-            type="text"
-          />
-        </label>
-        <button
-          type="submit"
-          onClick={(e) =>
-            this.submitForm(e, {
-              name: this.name.value,
-              lat: Number(this.lat.value),
-              lng: Number(this.lng.value),
-            })
-          }
-        >
-          Save
-        </button>
-      </form>
+      <div className="form-container">
+        <h2 className="form-header">Location Selector</h2>
+        <Form className="form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <Field
+              type="name"
+              name="name"
+              placeholder="Enter a name"
+              autoComplete="off"
+              value={values.name}
+              className={`form-control ${errors.name ? "is-invalid" : ""}`}
+            />
+            <ErrorMessage
+              component="div"
+              name="name"
+              className="invalid-feedback"
+              render={(msg) => <div className="invalid-feedback">{msg}</div>}
+            />
+          </div>
+          <div className="form-group">
+            <Field
+              type="number"
+              name="lat"
+              placeholder="Enter a latitude"
+              autoComplete="off"
+              value={values.lat}
+              className={`form-control ${errors.lat ? "is-invalid" : ""}`}
+            />
+            <ErrorMessage
+              component="div"
+              name="lat"
+              className="invalid-feedback"
+              render={(msg) => <div className="invalid-feedback">{msg}</div>}
+            />
+          </div>
+          <div className="form-group">
+            <Field
+              type="number"
+              name="lon"
+              placeholder="Enter a longitude"
+              autoComplete="off"
+              values={values.lon}
+              className={`form-control ${errors.lon ? "is-invalid" : ""}`}
+            />
+            <ErrorMessage
+              component="div"
+              name="lon"
+              className="invalid-feedback"
+              render={(msg) => <div className="invalid-feedback">{msg}</div>}
+            />
+          </div>
+          <button
+            type="submit"
+            className="form-button"
+            disabled={isSubmitting || Object.keys(errors).length > 0}
+          >
+            Submit
+          </button>
+        </Form>
+      </div>
     );
   }
 }
 
-export default Form;
+export default FormikForm;

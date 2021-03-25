@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LeafletMap from "../containers/LeafletMap";
 import FormContainer from "../containers/FormContainer";
+import ErrorMessage from "../containers/ErrorMessage";
 
 class App extends Component {
   componentDidMount() {
@@ -13,7 +14,8 @@ class App extends Component {
     return (
       <div className="App">
         <FormContainer />
-        <LeafletMap locations={this.props.locations} />
+        <LeafletMap locations={this.props.locations} map={this.props.map} />
+        {this.props.error.visible && <ErrorMessage />}
       </div>
     );
   }

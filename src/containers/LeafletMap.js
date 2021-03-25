@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { Map, TileLayer, ZoomControl } from 'react-leaflet';
-import AllMarkers from './AllMarkers'
+import React, { Component } from "react";
+import { Map, TileLayer, ZoomControl } from "react-leaflet";
+import AllMarkers from "./AllMarkers";
 
 class LeafletMap extends Component {
   constructor(props) {
-    super(props)
-    this.state = {
-
-    };
+    super(props);
+    this.state = {};
   }
   render() {
     return (
@@ -15,7 +13,7 @@ class LeafletMap extends Component {
         <Map
           className="map"
           zoomControl={false}
-          center={[39.750809, -104.996810]}
+          center={this.props.map.centerPoint}
           zoom={4}
           maxBounds={[[85, 100], [-85, -280]]}
         >
@@ -25,9 +23,7 @@ class LeafletMap extends Component {
             maxZoom={10}
             minZoom={2}
           />
-          <ZoomControl
-            position="bottomright"
-          />
+          <ZoomControl position="bottomright" />
           <AllMarkers />
         </Map>
       </div>
