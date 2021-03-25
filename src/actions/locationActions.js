@@ -30,17 +30,18 @@ const fetchAllLocations = () => {
 };
 
 const saveLocation = (location) => {
-  return (dispatch) => {
-    return fetch("/locations", {
+  return async (dispatch) => {
+    let r = await fetch("/locations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify(location),
-    })
-      .then((res) => res.json())
-      .then((json) => dispatch(addNewLocation(json)));
+    });
+    if (!r.ok) throw new Error(r.status + ": " + r.statusText);
+    let res = await r.json();
+    dispatch(addNewLocation(res));
   };
 };
 
