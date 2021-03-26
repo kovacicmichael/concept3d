@@ -47,6 +47,22 @@ app.get("/polygonMarkers", (req, res) => {
   res.send({ polygonMarkers: app.locals.polygonMarkers });
 });
 
+app.post("/polygonMarkers", (req, res) => {
+  let data = req.body;
+  app.locals.polygonMarkers.push(data);
+  res.send(data);
+});
+
+app.delete("/polygonMarkers", (req, res) => {
+  let data = req.body;
+  let index = app.locals.polygonMarkers.findIndex((m) => m.id == data.id);
+  if (index > -1) app.locals.polygonMarkers.splice(index, 1);
+
+  res.send({
+    result: "Deleted",
+  });
+});
+
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 
 app.get("/", (req, res) => {

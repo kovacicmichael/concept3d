@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "../style/App.css";
 import { fetchAllLocations } from "../actions/locationActions";
-import { fetchAllPolygons } from "../actions/locationActions";
+import { fetchAllPolygons } from "../actions/mapActions";
 import App from "../components/App";
 
 const mapStateToProps = (state) => {
