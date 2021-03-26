@@ -12,7 +12,7 @@ const FormikForm = withFormik({
     return {
       name: "",
       lat: "",
-      lon: "",
+      lng: "",
     };
   },
   validate(v) {
@@ -24,8 +24,8 @@ const FormikForm = withFormik({
     if ((!v.lat && v.lat != 0) || v.lat > 90 || v.lat < -90) {
       errors.lat = "Enter a value between -90 and 90.";
     }
-    if ((!v.lon && v.lon != 0) || v.lon > 180 || v.lon < -180) {
-      errors.lon = "Enter a value between -180 and 180.";
+    if ((!v.lng && v.lng != 0) || v.lng > 180 || v.lng < -180) {
+      errors.lng = "Enter a value between -180 and 180.";
     }
 
     return errors;
@@ -35,12 +35,12 @@ const FormikForm = withFormik({
     let d = {
       name: values.name,
       lat: values.lat,
-      lng: values.lon,
+      lng: values.lng,
     };
 
     try {
       await saveLocation(d);
-      setMapCenter([values.lat, values.lon]);
+      setMapCenter([values.lat, values.lng]);
       setSubmitting(false);
       resetForm();
     } catch (e) {

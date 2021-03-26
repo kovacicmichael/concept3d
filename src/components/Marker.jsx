@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
-import { Marker, Tooltip } from 'react-leaflet';
-import L from 'leaflet';
-import tealdot from '../imgs/tealdot.svg';
+import React, { PureComponent } from "react";
+import { Marker, Tooltip } from "react-leaflet";
+import L from "leaflet";
+import tealdot from "../imgs/tealdot.svg";
 
 class MapMarker extends PureComponent {
   render() {
@@ -12,7 +12,15 @@ class MapMarker extends PureComponent {
 
     return (
       <div className="marker-container">
-        <Marker position={this.props.location} icon={icon}>
+        <Marker
+          position={this.props.location}
+          eventHandlers={{
+            click: (e) => {
+              this.props.handleMarkerClick(this.props.marker);
+            },
+          }}
+          icon={icon}
+        >
           <Tooltip sticky interactive>
             <div>
               <h4>{this.props.name}</h4>

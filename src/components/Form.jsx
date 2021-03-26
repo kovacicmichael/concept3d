@@ -52,15 +52,15 @@ class FormikForm extends Component {
           <div className="form-group">
             <Field
               type="number"
-              name="lon"
+              name="lng"
               placeholder="Enter a longitude"
               autoComplete="off"
-              values={values.lon}
-              className={`form-control ${errors.lon ? "is-invalid" : ""}`}
+              values={values.lng}
+              className={`form-control ${errors.lng ? "is-invalid" : ""}`}
             />
             <ErrorMessage
               component="div"
-              name="lon"
+              name="lng"
               className="invalid-feedback"
               render={(msg) => <div className="invalid-feedback">{msg}</div>}
             />
