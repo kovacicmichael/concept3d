@@ -4,14 +4,20 @@ import { connect } from "react-redux";
 import Marker from "../components/Marker";
 import { bindActionCreators } from "redux";
 import { savePolygonMarker, deletePolygonMarker } from "../actions/mapActions";
+import { setErrorMessage } from "../actions/errorActions";
 
 class MarkerContainer extends PureComponent {
-  handleMarkerClick(marker) {
-    let index = this.props.markers.findIndex((m) => m.id == marker.id);
-    if (index < 0) {
-      this.props.savePolygonMarker(marker);
-    } else {
-      this.props.deletePolygonMarker(marker, index);
+  async handleMarkerClick(marker) {
+    try {
+      let index = this.props.markers.findIndex((m) => m.id == marker.id);
+      if (index < 0) {
+        await this.props.savePolygonMarker(marker);
+      } else {
+        await this.props.deletePolygonMarker(marker, index);
+      }
+    } catch (e) {
+      console.error(e);
+      this.props.setErrorMessage("From submit error: " + e.message);
     }
   }
   render() {
@@ -31,7 +37,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return bindActionCreators(
-    { savePolygonMarker, deletePolygonMarker },
+    { savePolygonMarker, deletePolygonMarker, setErrorMessage },
     dispatch,
   );
 };

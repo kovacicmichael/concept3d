@@ -77,7 +77,6 @@ const deletePolygonMarker = (marker, index) => {
       },
       body: JSON.stringify(marker),
     });
-    let d = r;
     if (!r.ok) throw new Error(r.status + ": " + r.statusText);
     let res = await r.json();
     dispatch(removePolygonMarker(index));
