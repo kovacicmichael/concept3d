@@ -1,0 +1,21 @@
+.draw-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 125px;
+  z-index: 1000;
+  height: 50px;
+  background-color: rgba(175, 175, 175, 0.5);
+  display: flex;
+}
+
+.draw-info-container {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.draw-info button {
+  margin-right: 5px;
+}
