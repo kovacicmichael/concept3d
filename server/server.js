@@ -29,7 +29,9 @@ const initialLocations = [
 
 app.locals.idIndex = 3;
 app.locals.locations = initialLocations;
+app.locals.polygonMarkers = [];
 
+// locations
 app.get("/locations", (req, res) => {
   res.send({ locations: app.locals.locations });
 });
@@ -38,6 +40,11 @@ app.post("/locations", (req, res) => {
   data.id = "id" + Math.floor(Math.random() * Math.floor(500)).toString();
   app.locals.locations.push(data);
   res.send(data);
+});
+
+// polygonMarkers
+app.get("/polygonMarkers", (req, res) => {
+  res.send({ polygonMarkers: app.locals.polygonMarkers });
 });
 
 app.use(express.static(path.resolve(__dirname, "..", "build")));

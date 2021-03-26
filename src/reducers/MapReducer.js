@@ -1,4 +1,5 @@
 const initialState = {
+  map: null,
   centerPoint: [39.750809, -104.99681],
   polygonMarkers: [
     {
@@ -39,6 +40,11 @@ const Map = (state = initialState, action) => {
       return Object.assign({}, state, {
         polygonMarkers: state.polygonMarkers.concat(action.data),
       });
+    case "SET_MAP_REFERENCE":
+      return Object.assign({}, state, {
+        map: action.data,
+      });
+
     default:
       return state;
   }

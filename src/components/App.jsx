@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <FormContainer />
-        <LeafletMap locations={this.props.locations} map={this.props.map} />
+        <LeafletMap />
         {this.props.error.visible && <ErrorMessage />}
       </div>
     );

@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch, props) => {
         type: "MARKER_TO_POLYGON",
         data: marker,
       });
+      dispatch({
+        type: "UPDATE_POLYGON_MARKERS",
+      });
     },
   };
 };
