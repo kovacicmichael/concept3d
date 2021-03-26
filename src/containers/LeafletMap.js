@@ -23,7 +23,7 @@ class LeafletMap extends Component {
         <MapContainer
           className="map"
           zoomControl={false}
-          center={this.props.map.centerPoint}
+          center={[39.750809, -104.99681]}
           zoom={4}
           maxBounds={[[85, 100], [-85, -280]]}
           whenCreated={(map) => {

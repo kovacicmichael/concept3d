@@ -7,9 +7,7 @@ const initialState = {
 const Map = (state = initialState, action) => {
   switch (action.type) {
     case "UPDATE_MAP_CENTER_POINT":
-      return Object.assign({}, state, {
-        centerPoint: action.data,
-      });
+      state.map.setView(action.data);
     case "REMOVE_POLYGON_MARKER":
       state.polygonMarkers.splice(action.data, 1);
       return Object.assign({}, state, {

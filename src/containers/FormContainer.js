@@ -21,10 +21,10 @@ const FormikForm = withFormik({
     if (!v.name) {
       errors.name = "Name is required.";
     }
-    if ((!v.lat && v.lat != 0) || v.lat > 90 || v.lat < -90) {
+    if (v.lat === "" || v.lat > 90 || v.lat < -90) {
       errors.lat = "Enter a value between -90 and 90.";
     }
-    if ((!v.lng && v.lng != 0) || v.lng > 180 || v.lng < -180) {
+    if (v.lng === "" || v.lng > 180 || v.lng < -180) {
       errors.lng = "Enter a value between -180 and 180.";
     }
 
